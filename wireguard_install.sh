@@ -108,8 +108,8 @@ cat > /etc/wireguard/wg0.conf <<-EOF
 [Interface]
 PrivateKey = $s1
 Address = 10.77.0.1/16 
-PostUp   = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT; iptables -I FORWARD -s 10.77.77.1/24 -d 10.77.77.1/24 -j DROP; iptables -t nat -A POSTROUTING -o $eth -j MASQUERADE
-PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT; iptables -D FORWARD -s 10.77.77.1/24 -d 10.77.77.1/24 -j DROP; iptables -t nat -D POSTROUTING -o $eth -j MASQUERADE
+PostUp   = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT; iptables -I FORWARD -s 10.77.77.1/24 -d 10.77.77.1/24 -j DROP; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT; iptables -D FORWARD -s 10.77.77.1/24 -d 10.77.77.1/24 -j DROP; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
 ListenPort = $port
 DNS = 8.8.8.8
 MTU = 1420
